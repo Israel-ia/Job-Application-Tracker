@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 import sqlite3
 
 app = Flask(__name__)
@@ -46,7 +46,7 @@ def add_application():
         connection.commit()
         connection.close()
 
-        return "Application Saved!"
+        return redirect("/")
 
     return render_template("add.html")
 

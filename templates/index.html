@@ -15,28 +15,25 @@
 
     <h2>Applications</h2>
 
+<table border="1">
+
+    <tr>
+        <th>Company</th>
+        <th>Position</th>
+        <th>Status</th>
+    </tr>
+
     {% for application in applications %}
 
-        <div>
-
-            <strong>Company:</strong>
-            {{ application[1] }}
-
-            <br>
-
-            <strong>Position:</strong>
-            {{ application[2] }}
-
-            <br>
-
-            <strong>Status:</strong>
-            {{ application[3] }}
-
-            <hr>
-
-        </div>
+    <tr>
+        <td>{{ application[1] }}</td>
+        <td>{{ application[2] }}</td>
+        <td>{{ application[3] }}</td>
+    </tr>
 
     {% endfor %}
+
+</table>
 
 </body>
 </html>
