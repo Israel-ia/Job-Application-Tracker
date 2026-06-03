@@ -29,6 +29,7 @@ def add_application():
         company = request.form["company"]
         position = request.form["position"]
         status = request.form["status"]
+        date_applied = request.form["date_applied"]
 
         connection = sqlite3.connect("applications.db")
 
@@ -37,10 +38,10 @@ def add_application():
         cursor.execute(
             """
             INSERT INTO applications
-            (company, position, status)
-            VALUES (?, ?, ?)
+            (company, position, status, date_applied)
+            VALUES (?, ?, ?, ?)
             """,
-            (company, position, status)
+            (company, position, status, date_applied)
         )
 
         connection.commit()
