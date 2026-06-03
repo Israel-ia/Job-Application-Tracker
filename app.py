@@ -5,7 +5,21 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+
+    connection = sqlite3.connect("applications.db")
+
+    cursor = connection.cursor()
+
+    cursor.execute("SELECT * FROM applications")
+
+    applications = cursor.fetchall()
+
+    connection.close()
+
+    return render_template(
+        "index.html",
+        applications=applications
+    )
 
 @app.route("/add", methods=["GET", "POST"])
 def add_application():

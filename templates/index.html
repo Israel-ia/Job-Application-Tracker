@@ -11,5 +11,32 @@
 
     <a href="/add">Add Application</a>
 
+    <hr>
+
+    <h2>Applications</h2>
+
+    {% for application in applications %}
+
+        <div>
+
+            <strong>Company:</strong>
+            {{ application[1] }}
+
+            <br>
+
+            <strong>Position:</strong>
+            {{ application[2] }}
+
+            <br>
+
+            <strong>Status:</strong>
+            {{ application[3] }}
+
+            <hr>
+
+        </div>
+
+    {% endfor %}
+
 </body>
 </html>
