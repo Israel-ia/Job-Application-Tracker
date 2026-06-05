@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Job Application Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
 
     <h1>Job Application Tracker</h1>
@@ -15,27 +18,42 @@
 
     <h2>Applications</h2>
 
-<table border="1">
+    <table>
 
-    <tr>
-        <th>Company</th>
-        <th>Position</th>
-        <th>Date Applied</th>
-        <th>Status</th>
-    </tr>
+        <tr>
+            <th>Company</th>
+            <th>Position</th>
+            <th>Date Applied</th>
+            <th>Status</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
 
-    {% for application in applications %}
+        {% for application in applications %}
 
-    <tr>
-        <td>{{ application[1] }}</td>
-        <td>{{ application[2] }}</td>
-        <td>{{ application[4] }}</td>
-        <td>{{ application[3] }}</td>
-    </tr>
+        <tr>
+            <td>{{ application[1] }}</td>
+            <td>{{ application[2] }}</td>
+            <td>{{ application[4] }}</td>
+            <td>{{ application[3] }}</td>
 
-    {% endfor %}
+            <td>
+                <a href="/edit/{{ application[0] }}">
+                    Edit
+                </a>
+            </td>
 
-</table>
+            <td>
+                <a href="/delete/{{ application[0] }}">
+                    Delete
+                </a>
+            </td>
+        </tr>
+
+        {% endfor %}
+
+    </table>
 
 </body>
+
 </html>

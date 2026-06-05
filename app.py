@@ -50,6 +50,47 @@ def add_application():
         return redirect("/")
 
     return render_template("add.html")
+@app.route("/delete/<int:id>")
+@app.route("/edit/<int:id>", methods=["GET", "POST"])
+def edit_application(id):
 
+    if request.method == "POST":
+
+        status = request.form["status"]
+
+        connection = sqlite3.connect("applications.db")
+
+        cursor = connection.cursor()
+
+        cursor.execute(
+            """
+            UPDATE applications
+            SET status = ?
+            WHERE id = ?
+            """,
+            (status, id)
+        )
+
+        connection.commit()
+        connection.close()
+
+        return redirect("/")
+
+    return render_template("edit.html")
+def delete_application(id):
+
+    connection = sqlite3.connect("applications.db")
+
+    cursor = connection.cursor()
+
+    cursor.execute(
+        "DELETE FROM applications WHERE id = ?",
+        (id,)
+    )
+
+    connection.commit()
+    connection.close()
+
+    return redirect("/")
 if __name__ == "__main__":
     app.run(debug=True)

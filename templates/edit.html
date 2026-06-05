@@ -2,35 +2,18 @@
 <html>
 
 <head>
-    <title>Add Application</title>
+    <title>Edit Application</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
 
-    <h1>Add Job Application</h1>
+    <h1>Edit Status</h1>
 
     <form method="POST">
 
-        <label>Company Name</label>
-        <br>
-        <input type="text" name="company" required>
-
-        <br><br>
-
-        <label>Position</label>
-        <br>
-        <input type="text" name="position" required>
-
-        <br><br>
-
-        <label>Date Applied</label>
-        <br>
-        <input type="date" name="date_applied" required>
-
-        <br><br>
-
         <label>Status</label>
+
         <br>
 
         <select name="status">
@@ -43,7 +26,7 @@
         <br><br>
 
         <button type="submit">
-            Save Application
+            Update Status
         </button>
 
     </form>
