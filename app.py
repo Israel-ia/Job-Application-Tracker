@@ -13,13 +13,40 @@ def home():
     cursor.execute("SELECT * FROM applications")
 
     applications = cursor.fetchall()
+    
+    total_applications = len(applications)
+
+    applied_count = sum(
+        1 for application in applications
+        if application[3] == "Applied"
+    )
+
+    interview_count = sum(
+        1 for application in applications
+        if application[3] == "Interview"
+    )
+
+    offer_count = sum(
+        1 for application in applications
+        if application[3] == "Offer"
+    )
+
+    rejected_count = sum(
+        1 for application in applications
+        if application[3] == "Rejected"
+    )
 
     connection.close()
 
     return render_template(
         "index.html",
-        applications=applications
-    )
+        applications=applications,
+        total_applications=total_applications,
+        applied_count=applied_count,
+        interview_count=interview_count,
+        offer_count=offer_count,
+        rejected_count=rejected_count
+    )   
 
 @app.route("/add", methods=["GET", "POST"])
 def add_application():
