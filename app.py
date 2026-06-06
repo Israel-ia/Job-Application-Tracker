@@ -8,6 +8,15 @@ def home():
     
     search_term = request.args.get("search", "")
     status_filter = request.args.get("status", "")
+    sort_order = request.args.get("sort", "")
+    
+    order_clause = ""
+
+    if sort_order == "newest":
+        order_clause = " ORDER BY date_applied DESC"
+
+    elif sort_order == "oldest":
+        order_clause = " ORDER BY date_applied ASC"
 
     connection = sqlite3.connect("applications.db")
 
@@ -20,7 +29,7 @@ def home():
             SELECT * FROM applications
             WHERE company LIKE ?
             AND status = ?
-            """,
+            """ + order_clause,
             (f"%{search_term}%", status_filter)
         )
 
@@ -30,7 +39,7 @@ def home():
             """
             SELECT * FROM applications
             WHERE company LIKE ?
-            """,
+            """ + order_clause,
             (f"%{search_term}%",)
         )
 
@@ -40,14 +49,14 @@ def home():
             """
             SELECT * FROM applications
             WHERE status = ?
-            """,
+            """ + order_clause,
             (status_filter,)
         )
 
     else:
 
         cursor.execute(
-            "SELECT * FROM applications"
+            "SELECT * FROM applications" + order_clause
         )
 
     applications = cursor.fetchall()
@@ -85,7 +94,8 @@ def home():
         offer_count=offer_count,
         rejected_count=rejected_count,  
         search_term=search_term,
-        status_filter=status_filter
+        status_filter=status_filter,
+        sort_order=sort_order
     )   
 
 @app.route("/add", methods=["GET", "POST"])
