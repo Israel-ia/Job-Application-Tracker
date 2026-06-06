@@ -5,15 +5,53 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
+    
+    search_term = request.args.get("search", "")
+    status_filter = request.args.get("status", "")
 
     connection = sqlite3.connect("applications.db")
 
     cursor = connection.cursor()
 
-    cursor.execute("SELECT * FROM applications")
+    if search_term and status_filter:
+
+        cursor.execute(
+            """
+            SELECT * FROM applications
+            WHERE company LIKE ?
+            AND status = ?
+            """,
+            (f"%{search_term}%", status_filter)
+        )
+
+    elif search_term:
+
+        cursor.execute(
+            """
+            SELECT * FROM applications
+            WHERE company LIKE ?
+            """,
+            (f"%{search_term}%",)
+        )
+
+    elif status_filter:
+
+        cursor.execute(
+            """
+            SELECT * FROM applications
+            WHERE status = ?
+            """,
+            (status_filter,)
+        )
+
+    else:
+
+        cursor.execute(
+            "SELECT * FROM applications"
+        )
 
     applications = cursor.fetchall()
-    
+        
     total_applications = len(applications)
 
     applied_count = sum(
@@ -45,7 +83,9 @@ def home():
         applied_count=applied_count,
         interview_count=interview_count,
         offer_count=offer_count,
-        rejected_count=rejected_count
+        rejected_count=rejected_count,  
+        search_term=search_term,
+        status_filter=status_filter
     )   
 
 @app.route("/add", methods=["GET", "POST"])
