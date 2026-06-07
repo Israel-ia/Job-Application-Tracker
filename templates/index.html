@@ -115,6 +115,26 @@
     <hr>
     <hr>   
 
+    <h2>Application Analytics</h2>
+
+    <div class="analytics-card">
+
+        <p>Applied ({{ applied_count }})</p>
+        <progress value="{{ applied_count }}" max="{{ total_applications }}"></progress>
+
+        <p>Interview ({{ interview_count }})</p>
+        <progress value="{{ interview_count }}" max="{{ total_applications }}"></progress>
+
+        <p>Offer ({{ offer_count }})</p>
+        <progress value="{{ offer_count }}" max="{{ total_applications }}"></progress>
+
+        <p>Rejected ({{ rejected_count }})</p>
+        <progress value="{{ rejected_count }}" max="{{ total_applications }}"></progress>
+
+    </div>
+
+    <hr>
+
     <h2>Applications</h2>
 
     <table>
