@@ -136,7 +136,22 @@ def add_application():
 @app.route("/delete/<int:id>")
 @app.route("/edit/<int:id>", methods=["GET", "POST"])
 def edit_application(id):
+    connection = sqlite3.connect("applications.db")
 
+    cursor = connection.cursor()
+
+    cursor.execute(
+        """
+        SELECT * FROM applications
+        WHERE id = ?
+        """,
+        (id,)
+    )
+
+    application = cursor.fetchone()
+
+    connection.close()
+    
     if request.method == "POST":
 
         status = request.form["status"]
@@ -160,7 +175,10 @@ def edit_application(id):
 
         return redirect("/")
 
-    return render_template("edit.html")
+    return render_template(
+        "edit.html",
+        application=application
+    )
 def delete_application(id):
 
     connection = sqlite3.connect("applications.db")

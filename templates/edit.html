@@ -18,10 +18,25 @@
 
         <select name="status">
 
-            <option>Applied</option>
-            <option>Interview</option>
-            <option>Rejected</option>
-            <option>Offer</option>
+            <option value="Applied"
+                {% if application[3] == "Applied" %}selected{% endif %}>
+                Applied
+            </option>
+
+            <option value="Interview"
+                {% if application[3] == "Interview" %}selected{% endif %}>
+                Interview
+            </option>
+
+            <option value="Offer"
+                {% if application[3] == "Offer" %}selected{% endif %}>
+                Offer
+            </option>
+
+            <option value="Rejected"
+                {% if application[3] == "Rejected" %}selected{% endif %}>
+                Rejected
+            </option>
 
         </select>
 
@@ -35,7 +50,7 @@
             name="notes"
             rows="6"
             cols="50"
-        ></textarea>
+        >{{ application[5] }}</textarea>
 
         <br><br>
 
