@@ -140,6 +140,7 @@ def edit_application(id):
     if request.method == "POST":
 
         status = request.form["status"]
+        notes = request.form["notes"]
 
         connection = sqlite3.connect("applications.db")
 
@@ -148,10 +149,10 @@ def edit_application(id):
         cursor.execute(
             """
             UPDATE applications
-            SET status = ?
+            SET status = ?, notes = ?
             WHERE id = ?
             """,
-            (status, id)
+            (status, notes, id)
         )
 
         connection.commit()
@@ -175,5 +176,29 @@ def delete_application(id):
     connection.close()
 
     return redirect("/")
+
+@app.route("/notes/<int:id>")
+def view_notes(id):
+
+    connection = sqlite3.connect("applications.db")
+
+    cursor = connection.cursor()
+
+    cursor.execute(
+        """
+        SELECT * FROM applications
+        WHERE id = ?
+        """,
+        (id,)
+    )
+
+    application = cursor.fetchone()
+
+    connection.close()
+
+    return render_template(
+        "notes.html",
+        application=application
+    )
 if __name__ == "__main__":
     app.run(debug=True)
