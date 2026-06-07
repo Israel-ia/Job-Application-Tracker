@@ -134,8 +134,15 @@
             <td>{{ application[1] }}</td>
             <td>{{ application[2] }}</td>
             <td>{{ application[4] }}</td>
-            <td>{{ application[3] }}</td>
+            <td>
 
+                <span class="status-badge {{ application[3].lower() }}">
+
+                    {{ application[3] }}
+
+                </span>
+
+            </td>
             <td>
                 <a href="/edit/{{ application[0] }}">
                     Edit
