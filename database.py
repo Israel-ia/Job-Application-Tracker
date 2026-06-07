@@ -10,7 +10,8 @@ CREATE TABLE IF NOT EXISTS applications (
     company TEXT NOT NULL,
     position TEXT NOT NULL,
     status TEXT NOT NULL,
-    date_applied TEXT NOT NULL
+    date_applied TEXT NOT NULL,
+    notes TEXT
 )
 """)
 

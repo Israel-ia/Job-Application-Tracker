@@ -78,3 +78,31 @@ button {
 .rejected {
     background-color: #e74c3c;
 }
+
+.edit-btn {
+    background-color: #3498db;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.delete-btn {
+    background-color: #e74c3c;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.edit-btn:hover {
+    opacity: 0.85;
+}
+
+.delete-btn:hover {
+    opacity: 0.85;
+}
+
+tr:hover {
+    background-color: #f8f9fa;
+}
