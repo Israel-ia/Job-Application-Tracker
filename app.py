@@ -133,7 +133,7 @@ def add_application():
         return redirect("/")
 
     return render_template("add.html")
-@app.route("/delete/<int:id>")
+
 @app.route("/edit/<int:id>", methods=["GET", "POST"])
 def edit_application(id):
     connection = sqlite3.connect("applications.db")
@@ -179,6 +179,7 @@ def edit_application(id):
         "edit.html",
         application=application
     )
+@app.route("/delete/<int:id>")
 def delete_application(id):
 
     connection = sqlite3.connect("applications.db")
