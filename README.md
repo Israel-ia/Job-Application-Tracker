@@ -1,8 +1,13 @@
 # Job Application Tracker
+<<<<<<< HEAD
 
 Live Demo: https://job-application-tracker-brwp.onrender.com
 
 A full-stack web application that helps users track job applications, interview stages, offers, rejections, and recruiting progress. The application provides a centralized dashboard for managing job searches and visualizing application statistics.
+=======
+https://job-application-tracker-brwp.onrender.com
+A web application that helps users track job applications, interview stages, and recruiting progress.
+>>>>>>> bec864c4fcf3d42fafbbf2c68bc5720202b91691
 
 ## Features
 
@@ -21,6 +26,7 @@ A full-stack web application that helps users track job applications, interview 
 
 ## Technologies Used
 
+<<<<<<< HEAD
 ### Backend
 
 * Python
@@ -107,3 +113,10 @@ Through this project I gained experience with:
 * HTML, CSS, and JavaScript integration
 * Deploying web applications using Render
 * Git and GitHub workflow
+=======
+- Python
+- Flask
+- SQLite
+- HTML
+- CSS
+>>>>>>> bec864c4fcf3d42fafbbf2c68bc5720202b91691
